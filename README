@@ -1,0 +1,12 @@
+Kohonen Neural Network in Python.
+
+Part of my scientific initiation project: "Artificial Neural Networks applied to Prostate Cancer Prognosis"
+
+----------------------------------------------------------------------------
+
+To execute just type
+
+cd src/
+python __main__.py
+
+and be happy! =]
