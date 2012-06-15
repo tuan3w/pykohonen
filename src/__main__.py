@@ -41,11 +41,6 @@ def define_patterns(som, data_set):
                     som.neurons[i][j].recognized_pattern = 0
                 else:
                     som.neurons[i][j].recognized_pattern = 1
-#            if som.neurons[i][j].recognized_pattern == None:
-#                print 'N ',
-#            else:
-#                print str(som.neurons[i][j].recognized_pattern) + ' ',
-#        print '\n'
 
 
 if __name__ == '__main__':
@@ -53,15 +48,6 @@ if __name__ == '__main__':
     
     training_set = get_input('../datasets/training_set2.txt')
     test_set = get_input('../datasets/test_set.txt')
-    
-    string = raw_input().split(' ')
-    
-    rows = int(string[0])
-    cols = int(string[1])
-    l_rate = float(string[2])
-    e_w = float(string[3])
-    t = int(string[4])
-
     
     total_c = 0
     total_nc = 0
@@ -72,41 +58,44 @@ if __name__ == '__main__':
         else:
             total_nc += 1
 
-    
-    while rows != 0 and cols != 0 and l_rate != 0.0 and e_w != 0.0 and t != 0:
-        cont_c = 0
-        cont_nc = 0
 
-        k = Kohonen(3, rows, cols, l_rate, e_w)
+    cont_c = 0
+    cont_nc = 0
 
-        k.learn(t, training_set, define_patterns)
+    k = Kohonen(3, 5, 5, 0.1, 2)
+    k.learn(10, training_set, define_patterns)
     
-        cont_hit = 0
+    print '\nPressione [ENTER] para realizar o teste.'
+    raw_input()
+    
+    cont_hit = 0
+    
+    i = 0
+    
+    for test_data in test_set:
+        answer = k.test(test_data)
         
-        for test_data in test_set:
-            answer = k.test(test_data)
+        print 'test_data['+str(i)+'] = ' + str(answer),
         
-            if answer == test_data[-1]:
-                cont_hit += 1
+        if answer == test_data[-1]:
+            print 'OK'
             
-                if test_data[-1] == 0:
-                    cont_c += 1
-                else:
-                    cont_nc += 1
+            cont_hit += 1
+            
+            if test_data[-1] == 0:
+                cont_c += 1
+            else:
+                cont_nc += 1
+        else:
+            print
+        
+        i += 1
 
     
-        hit_rate = (float(cont_hit) * 100) / float(len(test_set))
-        c_rate = (float(cont_c) * 100) / float(total_c)
-        nc_rate = (float(cont_nc) * 100) / float(total_nc)
+    hit_rate = (float(cont_hit) * 100) / float(len(test_set))
+    c_rate = (float(cont_c) * 100) / float(total_c)
+    nc_rate = (float(cont_nc) * 100) / float(total_nc)
         
-        print 'O acerto para confinado foi: ' + str(c_rate)
-        print 'O acerto para nao confinado foi: ' + str(nc_rate)
-        print 'O acerto total da RNA foi: ' + str(hit_rate) + '\n\n\n'
-        
-        string = raw_input().split(' ')
-    
-        rows = int(string[0])
-        cols = int(string[1])
-        l_rate = float(string[2])
-        e_w = float(string[3])
-        t = int(string[4])
+    print 'O acerto para confinado foi: ' + str(c_rate)
+    print 'O acerto para nao confinado foi: ' + str(nc_rate)
+    print 'O acerto total da RNA foi: ' + str(hit_rate) + '\n'

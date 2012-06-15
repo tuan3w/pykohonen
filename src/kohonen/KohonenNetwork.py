@@ -5,7 +5,6 @@ class Neuron:
     
     def __init__(self, num_inputs, row, column, learning_rate, effective_width, tau):
         self.weights = [random() for i in range(num_inputs)]
-#        print self.weights
         self.row = row
         self.column = column
         self._learning_rate = learning_rate
@@ -43,14 +42,17 @@ class Kohonen:
         
     def learn(self, times, data_set, define_patterns):
         now = 0
-#        print 'Learning started!'
+        
+        print 'Aprendizado iniciado.'
+        
         while now < times:
-#            print 'Learning iteration #'+str(now)
+            print 'Aprendizado iteracao '+str(now)
             for data in data_set:
                 self._adjust_weights(now, self.find_winner(data), data)
                 
             now += 1
-#        print 'Learning finished!\n'
+
+        print 'Aprendizado finalizado!\n'
         
         define_patterns(self, data_set)
                     
