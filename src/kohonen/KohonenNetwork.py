@@ -43,16 +43,12 @@ class Kohonen:
     def learn(self, times, data_set, define_patterns):
         now = 0
         
-        print 'Aprendizado iniciado.'
-        
         while now < times:
-            print 'Aprendizado iteracao '+str(now)
+
             for data in data_set:
                 self._adjust_weights(now, self.find_winner(data), data)
                 
             now += 1
-
-        print 'Aprendizado finalizado!\n'
         
         define_patterns(self, data_set)
                     
