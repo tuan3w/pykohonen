@@ -1,6 +1,14 @@
 from random import random
 from math import exp
 
+'''
+ Kohonen Self-Organizing Map implementation
+
+ Author: Victor Alexandre Padilha - padilha@linuxmail.org
+
+ Computer Science Department - Mid-West State University of Paraná (UNICENTRO)
+'''
+
 class Neuron:
     
     def __init__(self, num_inputs, row, column, learning_rate, effective_width, tau):
