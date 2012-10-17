@@ -6,7 +6,7 @@ from math import exp
 
  Author: Victor Alexandre Padilha - padilha@linuxmail.org
 
- Computer Science Department - Mid-West State University of Paraná (UNICENTRO)
+ Computer Science Department - Mid-West State University of Parana (UNICENTRO)
 '''
 
 class Neuron:
